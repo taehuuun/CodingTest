@@ -13,7 +13,7 @@ public class Solution {
     public bool CheckSquareNumber(int n)
     {
         // 1 ~ n까지 반복
-        for(int i = 1; i <= n; i++)
+        for(int i = 1; i <= n/2; i++)
         {
             // i를 제곱했을때 n 값이 나오면 true 리턴
             if(Math.Pow(i, 2) == n)
