@@ -1,9 +1,11 @@
 while (true)
 {
-    string input= Console.ReadLine();
-    
-    if(input == null)
-        break;
+    string input = Console.ReadLine();
+
+    if (string.IsNullOrEmpty(input))
+    {
+        return;
+    }
     
     Console.WriteLine(input);
 }
