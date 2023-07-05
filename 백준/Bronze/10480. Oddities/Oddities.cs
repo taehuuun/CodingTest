@@ -4,12 +4,7 @@ for (int i = 0; i < n; i++)
 {
     int inputNum = int.Parse(Console.ReadLine());
 
-    if (inputNum % 2 == 0)
-    {
-        Console.WriteLine($"{inputNum} is even");
-    }
-    else
-    {
-        Console.WriteLine($"{inputNum} is odd");
-    }
+    string result = inputNum % 2 == 0 ? "even" : "odd";
+    
+    Console.WriteLine($"{inputNum} is {result}");
 }
