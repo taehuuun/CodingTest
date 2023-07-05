@@ -1,2 +1,2 @@
-int n = int.Parse(Console.ReadLine());
-Console.WriteLine($"{(char)(44031 + n)}");
+char n = (char)(44031 + int.Parse(Console.ReadLine()));
+Console.Write($"{n}");
