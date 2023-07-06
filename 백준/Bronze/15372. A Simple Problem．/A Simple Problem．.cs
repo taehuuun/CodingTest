@@ -1,8 +1,8 @@
 using System.Numerics;
 using System.Text;
 
-StreamReader streamReader = new StreamReader(Console.OpenStandardInput());
-TextWriter stringWriter = new StreamWriter(Console.OpenStandardOutput()) { AutoFlush = true };
+StreamReader streamReader = new StreamReader(new BufferedStream(Console.OpenStandardInput()));
+TextWriter stringWriter = new StreamWriter(new BufferedStream(Console.OpenStandardOutput())) { AutoFlush = true };
 StringBuilder stringBuilder = new StringBuilder();
 
 int t = int.Parse(streamReader.ReadLine());
