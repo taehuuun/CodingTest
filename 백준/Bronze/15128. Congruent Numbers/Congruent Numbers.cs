@@ -1,9 +1,8 @@
-string[] input = Console.ReadLine().Split();
-int[] intInput = Array.ConvertAll(input, int.Parse);
+long[] input = Array.ConvertAll(Console.ReadLine().Split(),long.Parse);
 
-double result = 0.5 * intInput[0] / intInput[1] * intInput[2] / intInput[3];
+double result = input[0] * input[2] % (input[1] * input[3] * 2);
 
-if (Math.Floor(result).Equals(result))
+if (result == 0)
 {
     Console.WriteLine("1");
 }
