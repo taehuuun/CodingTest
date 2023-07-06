@@ -9,7 +9,7 @@ int t = int.Parse(streamReader.ReadLine());
 for (int i = 0; i < t ; i++)
 {
     int n = int.Parse(streamReader.ReadLine());
-    stringBuilder.AppendLine(((BigInteger)n * n).ToString());
+    stringBuilder.AppendLine(((long)n * n).ToString());
 }
 
 stringWriter.WriteLine(stringBuilder.ToString());
