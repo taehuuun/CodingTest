@@ -1,3 +1,3 @@
-long[] input = Array.ConvertAll(Console.ReadLine().Split(),long.Parse);
+string[] input = Console.ReadLine().Split();
 
-Console.WriteLine((int)input[0] * input[1] / 2);
+Console.WriteLine(long.Parse(input[0]) *long.Parse(input[1]) / 2);
