@@ -1,13 +1,18 @@
 int[] score1 = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
 int[] score2 = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
 
-if (score1[0] + score2[1] == score1[1] + score2[0])
+int pScore = score1[0] + score2[1];
+int eScore = score1[1] + score2[0]; 
+int homeE = score1[1];
+int homeP = score2[1];
+
+if (pScore == eScore)
 {
-    if (score2[1] == score1[1])
+    if (homeP == homeE)
     {
         Console.WriteLine("Penalty");
     }
-    else if (score2[1] > score1[1])
+    else if (homeP > homeE)
     {
         Console.WriteLine("Persepolis");
     }
@@ -18,7 +23,7 @@ if (score1[0] + score2[1] == score1[1] + score2[0])
 }
 else
 {
-    if (score1[0] + score2[1] > score1[1] + score2[0])
+    if (pScore > eScore)
     {
         Console.WriteLine("Persepolis");
     }
