@@ -1,47 +1,72 @@
-string inputSize = Console.ReadLine();
-string[] splitSize = inputSize.Split(' ');
+int[] input = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
 
-int n = int.Parse(splitSize[0]);
-int m = int.Parse(splitSize[1]);
+int vertical = input[0];
+int horizontal = input[1];
 
-char[,] map = new char[n, m];
-int[,] visited = new int[n, m];
+char[,] map = new char[vertical, horizontal];
+bool[,] visited = new bool[vertical, horizontal];
+int[,] distance = new int[vertical, horizontal];
+
 int[] dirX = { 0, 0, -1, 1 };
 int[] dirY = { -1, 1, 0, 0 };
 
-int distance = 0;
-
-for (int i = 0; i < n; i++)
+for (int y = 0; y < vertical; y++)
 {
-    string inputRow = Console.ReadLine();
+    string row = Console.ReadLine();
 
-    for (int j = 0; j < inputRow.Length; j++)
+    for (int x = 0; x < row.Length; x++)
     {
-        map[i, j] = inputRow[j];
+        map[y, x] = row[x];
     }
 }
 
-Queue<(int,int)> queue = new Queue<(int, int)>();
+distance[0, 0] = 1;
+BFS(0,0);
 
-visited[0,0] = 1;
-queue.Enqueue((0,0));
+Console.WriteLine(distance[vertical-1, horizontal-1]);
 
-while (queue.Count > 0)
+void BFS(int x, int y)
 {
-    var curPos = queue.Peek();
-    queue.Dequeue();
-
-    for (int i = 0; i < 4; i++)
+    Queue<Position> queue = new Queue<Position>();
+    
+    queue.Enqueue(new Position(x,y));
+    visited[y, x] = true;
+    
+    while (queue.Count > 0)
     {
-        int nextX = curPos.Item1 + dirX[i];
-        int nextY = curPos.Item2 + dirY[i];
+        Position currentPos = queue.Dequeue();
 
-        if (nextX >= 0 && nextX < m && nextY >= 0 && nextY < n && map[nextY, nextX] == '1' && visited[nextY, nextX] == 0)
+        for (int i = 0; i < 4; i++)
         {
-            queue.Enqueue((nextX,nextY));
-            visited[nextY, nextX] = visited[curPos.Item2, curPos.Item1] +1;
+            int nextX = currentPos.X + dirX[i];
+            int nextY = currentPos.Y + dirY[i];
+            
+            if(nextX < 0 || nextX >= horizontal)
+                continue;
+            if(nextY < 0 || nextY >= vertical)
+                continue;
+            if(visited[nextY,nextX])
+                continue;
+            if(map[nextY, nextX] != '1')
+                continue;
+
+            visited[nextY, nextX] = true;
+            queue.Enqueue(new Position(nextX, nextY));
+            distance[nextY, nextX] = distance[currentPos.Y, currentPos.X] + 1;
         }
     }
 }
 
-Console.WriteLine(visited[n-1,m-1]);
+class Position
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+
+    public Position() : this(0, 0) { }
+
+    public Position(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+}
