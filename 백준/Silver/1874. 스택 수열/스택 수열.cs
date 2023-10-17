@@ -1,42 +1,46 @@
-int n = int.Parse(Console.ReadLine());
-int[] targetSequence = new int[n];
-
-for (int i = 0; i < n; i++)
+using (StreamReader sr = new StreamReader(Console.OpenStandardInput()))
+using (StreamWriter sw = new StreamWriter(Console.OpenStandardOutput()) { AutoFlush = true })
 {
-    targetSequence[i] = int.Parse(Console.ReadLine());
-}
+    int n = int.Parse(sr.ReadLine());
+    int[] targetSequence = new int[n];
 
-string result = GetStackOperations(targetSequence);
+    for (int i = 0; i < n; i++)
+    {
+        targetSequence[i] = int.Parse(sr.ReadLine());
+    }
 
-if (result != null)
-{
-    Console.WriteLine(result);
-}
-else
-{
-    Console.WriteLine("NO");
+    string result = GetStackOperations(targetSequence);
+
+    if (result != null)
+    {
+        sw.Write(result);
+    }
+    else
+    {
+        sw.WriteLine("NO");
+    }
 }
 
 static string GetStackOperations(int[] targetSequence)
 {
-    List<char> operations = new List<char>(targetSequence.Length * 2);  // 최대 2n의 연산이 필요합니다.
+    char[] operations = new char[targetSequence.Length * 4];  // 최대 2n의 연산이 필요합니다.
     Stack<int> stack = new Stack<int>(targetSequence.Length);  // 스택의 초기 크기를 설정합니다.
-    int currentNumber = 1;
+    int currentNumber = 1, opIndex = 0;
 
     foreach (int target in targetSequence)
     {
         while (currentNumber <= target)
         {
             stack.Push(currentNumber++);
-            operations.Add('+');
-            operations.Add('\n');
+            operations[opIndex++] = '+';
+            operations[opIndex++] = '\n';
         }
 
         if (stack.Count > 0 && stack.Peek() == target)
         {
             stack.Pop();
-            operations.Add('-');
-            operations.Add('\n');
+            operations[opIndex++] = '-';
+            operations[opIndex++] = '\n';
         }
         else
         {
@@ -44,5 +48,5 @@ static string GetStackOperations(int[] targetSequence)
         }
     }
 
-    return new string(operations.ToArray());
+    return new string(operations, 0, opIndex);
 }
