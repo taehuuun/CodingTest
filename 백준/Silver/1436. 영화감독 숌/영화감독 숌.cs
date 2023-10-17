@@ -1,22 +1,15 @@
 int n = int.Parse(Console.ReadLine());
-int title = 666;
-string s;
- 
-while(true)
-{
-    s = title.ToString();
- 
-    if (s.Contains("666"))
-    {
-        n--;
-    }
- 
-    if (n == 0) 
-    {
-        break;
-    }
 
-    title++;
+int targetNum = 0;
+int count = 0;
+
+while (n != count)
+{
+    targetNum++;
+    if (targetNum.ToString().Contains("666"))
+    {
+        count++;
+    }
 }
 
-Console.Write(title);
+Console.WriteLine(targetNum);
