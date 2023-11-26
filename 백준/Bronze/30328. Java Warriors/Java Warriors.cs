@@ -1,0 +1,1 @@
+Console.WriteLine(int.Parse(Console.ReadLine()) * 4000);
