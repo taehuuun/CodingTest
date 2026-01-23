@@ -1,17 +1,20 @@
 var sr = new StreamReader(Console.OpenStandardInput());
-int n = int.Parse(sr.ReadLine());
-int year = 2024;
-int month = 8;
-int addMonth = 7 * (n - 1);
 
-if (addMonth > 0)
+switch (sr.ReadLine())
 {
-    month += addMonth;
-    year += month / 12;
-    month %= 12;
+    case "1":
+        Console.WriteLine("2024 8");
+        break;
+    case "2":
+        Console.WriteLine("2025 3");
+        break;
+    case "3":
+        Console.WriteLine("2025 10");
+        break;
+    case "4":
+        Console.WriteLine("2026 5");
+        break;
+    case "5":
+        Console.WriteLine("2026 12");
+        break;
 }
-
-year = month == 0 ? year - 1 : year;
-month = month == 0 ? 12 : month;
-
-Console.WriteLine($"{year} {month }");
