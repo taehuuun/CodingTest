@@ -7,6 +7,7 @@ sum += int.Parse(sr.ReadLine());
 sum += int.Parse(sr.ReadLine());
 sum += int.Parse(sr.ReadLine());
 sum += int.Parse(sr.ReadLine());
+sum += 300;
 
 // 5바퀴를 1800초 이하로 완주하면 통과
-Console.WriteLine( sum + 300 <= 1800 ? "Yes" : "No");
+Console.WriteLine( sum <= 1800 ? "Yes" : "No");
