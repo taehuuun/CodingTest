@@ -2,11 +2,15 @@ int x = int.Parse(Console.ReadLine());
 
 var index = x % 3;
 
-if (index == 0)
+switch (index % 3)
 {
-    Console.WriteLine("S");
-}
-else
-{
-    Console.WriteLine("UOS"[index-1]);
+    case 0:
+        Console.WriteLine("S");
+        break;
+    case 1:
+        Console.WriteLine("U");
+        break;
+    case 2:
+        Console.WriteLine("O");
+        break;
 }
