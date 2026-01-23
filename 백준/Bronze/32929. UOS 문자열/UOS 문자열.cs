@@ -1,8 +1,4 @@
-int x = int.Parse(Console.ReadLine());
-
-var index = x % 3;
-
-switch (index % 3)
+switch ((int.Parse(Console.ReadLine())) % 3)
 {
     case 0:
         Console.WriteLine("S");
