@@ -11,12 +11,7 @@ vector<int> solution(vector<int> arr)
     
     while(i < arr.size())
     {
-        if(stk.size() == 0)
-        {
-            stk.push_back(arr[i]);
-            i++;
-        }
-        else if(stk[stk.size()-1] < arr[i])
+        if(stk.empty() || stk[stk.size()-1] < arr[i])
         {
             stk.push_back(arr[i]);
             i++;
