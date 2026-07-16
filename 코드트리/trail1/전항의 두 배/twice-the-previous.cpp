@@ -3,12 +3,9 @@ using namespace std;
 
 int main() 
 {
-    int a, b, pp, p , current = 0;
+    int pp, p , current = 0;
 
-    cin >> a >> b;
-
-    pp = a;
-    p = b;
+    cin >> pp >> p;
 
     cout << pp << ' ' << p << ' ';
 
