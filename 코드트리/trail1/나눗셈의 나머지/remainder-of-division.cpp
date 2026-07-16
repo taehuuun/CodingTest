@@ -7,18 +7,10 @@ int main()
 
     cin >> a >> b;
 
-    while(true)
+    while(a > 1)
     {
-        int mod = a % b;
-
-        countArr[mod]++;
-
+        countArr[a % b]++;
         a /= b;
-
-        if(a <= 1)
-        {
-            break;
-        }
     }
 
     for(int i = 0; i < 10; i++)
