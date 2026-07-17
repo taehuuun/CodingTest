@@ -1,47 +1,47 @@
+#include <array>
 #include <iostream>
-using namespace std;
 
-int main() 
+int main()
 {
-    const int maxSize = 100;
-    int aLen, bLen, aArr[maxSize], bArr[maxSize], findIdx = 0;
+    constexpr int maxSize = 100;
+    std::array<int, maxSize> aArr, bArr;
 
-    cin >> aLen >> bLen;
+    int aLen = 0, bLen = 0;
+    std::cin >> aLen >> bLen;
 
-    for(int i = 0; i < aLen; i++)
+    for (int i = 0; i < aLen; i++)
     {
-        cin >> aArr[i];
+        std::cin >> aArr[i];
     }
 
-    for(int i = 0 ; i < bLen; i++)
+    for (int i = 0; i < bLen; i++)
     {
-        cin >> bArr[i];
+        std::cin >> bArr[i];
     }
 
-    for(int i = 0 ; i < aLen; i++)
+    bool found = false;
+
+    for (int start = 0; start + bLen <= aLen; start++)
     {
-        if(findIdx == bLen)
+        bool matched = true;
+
+        for (int j = 0; j < bLen; j++)
         {
+            if (aArr[start + j] != bArr[j])
+            {
+                matched = false;
+                break;
+            }
+        }
+
+        if (matched)
+        {
+            found = true;
             break;
         }
-
-        if(aArr[i] != bArr[findIdx])
-        {
-            findIdx = 0;
-            continue;
-        }
-
-        findIdx++;
     }
 
-    if(findIdx == bLen)
-    {
-        cout << "Yes";
-    }
-    else
-    {
-        cout << "No";
-    }
+    std::cout << (found ? "Yes" : "No");
 
     return 0;
 }
