@@ -23,10 +23,7 @@ int main()
             continue;
         }
 
-        if(max < i)
-        {
-            max = i;
-        }
+        max = i;
     }
 
     cout << max;
