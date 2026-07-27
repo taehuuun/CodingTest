@@ -7,14 +7,7 @@ int main()
 
     cin >> a;
 
-    if(a == 'z')
-    {
-        cout << 'a';
-    }
-    else
-    {
-        cout << (char)((int)a + 1);
-    }
+    cout << (a == 'z' ? 'a' : ((char)((int)a + 1)));
 
     return 0;
 }
