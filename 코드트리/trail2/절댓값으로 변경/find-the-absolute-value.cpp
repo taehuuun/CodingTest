@@ -3,16 +3,19 @@
 
 using namespace std;
 
-int GetAbsolute(int n)
+void ChangeAbsolute(int *n, int len)
 {
-    string tmp = to_string(n);
-
-    if(tmp[0] == '-')
+    for(int i = 0; i < len; i++)
     {
-        tmp = tmp.erase(0,1);
-    }
+        string tmp = to_string(n[i]);
 
-    return stoi(tmp);
+        if(tmp[0] == '-')
+        {
+            tmp = tmp.erase(0,1);
+        }
+
+        n[i] = stoi(tmp);
+    }
 }
 
 int main() 
@@ -27,9 +30,11 @@ int main()
         cin >> arr[i];
     }
 
+    ChangeAbsolute(arr, n);
+
     for(int i = 0; i < n; i++)
     {
-        cout << GetAbsolute(arr[i]) << ' ';
+        cout << arr[i] << ' ';
     }
 
     return 0;
