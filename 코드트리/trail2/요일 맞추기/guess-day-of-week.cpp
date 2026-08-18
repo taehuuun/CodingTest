@@ -12,11 +12,6 @@ string GetDay(int diff)
         diff += 7;
     }
 
-    if(diff > 7)
-    {
-        diff -= 7;
-    }
-
     return dayName[diff];
 }
 
