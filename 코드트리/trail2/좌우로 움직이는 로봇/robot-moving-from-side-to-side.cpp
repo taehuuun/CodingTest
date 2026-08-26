@@ -1,74 +1,20 @@
 #include <iostream>
 using namespace std;
 
-void UpdateArrayPosition(int *arr, int time, int value)
-{
-    arr[time] = value;
-}
+void UpdateArrayPosition(int *arr, int time, int value);
+void InputRobotData(int inputCnt, int *robot, int *time, int *position);
+
+constexpr int MAX_SIZE = 2'000'000;
+int aArr[MAX_SIZE] = { }, bArr[MAX_SIZE] = {};
 
 int main()
 {
-    const int MAX_SIZE = 2'000'000;
-
-    int aArr[MAX_SIZE] = { }, bArr[MAX_SIZE] = {};
-    int n, m, aCurrentPos = 0, bCurrentPos = 0, aTime = 1, bTime = 1; 
+    int n, m, aCurrentPos = 0, bCurrentPos = 0, aTime = 1, bTime = 1;
 
     cin >> n >> m;
 
-    for(int i = 0; i < n; i++)
-    {
-        int t;
-        char d;
-
-        cin >> t >> d;
-
-        int targetTime = aTime + t;
-
-        if(d == 'R')
-        {
-            for( ; aTime < targetTime; aTime++)
-            {
-                aCurrentPos++;
-                UpdateArrayPosition(aArr, aTime, aCurrentPos);
-            }
-        }
-        else
-        {
-            for( ; aTime < targetTime; aTime++)
-            {
-                aCurrentPos--;
-                UpdateArrayPosition(aArr, aTime, aCurrentPos);
-            }
-        }
-    }
-
-    for(int i = 0; i < m; i++)
-    {
-        int t;
-        char d;
-
-        cin >> t >> d;
-
-        int targetTime = bTime + t;
-
-        if(d == 'R')
-        {
-            for( ; bTime < targetTime; bTime++)
-            {
-                bCurrentPos++;
-                UpdateArrayPosition(bArr, bTime, bCurrentPos);
-            }
-        }
-        else
-        {
-            for( ; bTime < targetTime; bTime++)
-            {
-                bCurrentPos--;
-                UpdateArrayPosition(bArr, bTime, bCurrentPos);
-            }
-        }
-    }
-
+    InputRobotData(n, aArr, &aTime, &aCurrentPos);
+    InputRobotData(m, bArr, &bTime, &bCurrentPos);
 
     int totalTime = aTime > bTime ? aTime : bTime;
     int count = 0, aPos, bPos, aPrevPos = aArr[1], bPrevPos = bArr[1];
@@ -85,8 +31,43 @@ int main()
         aPrevPos = aPos;
         bPrevPos = bPos;
     }
-    
+
     cout << count;
 
     return 0;
+}
+
+void UpdateArrayPosition(int *arr, int time, int value)
+{
+    arr[time] = value;
+}
+
+void InputRobotData(int inputCnt, int *robot, int *time, int *position)
+{
+    for(int i = 0; i < inputCnt; i++)
+    {
+        int t;
+        char d;
+
+        cin >> t >> d;
+
+        const int targetTime = *time + t;
+
+        if(d == 'R')
+        {
+            for( ; *time < targetTime; (*time)++)
+            {
+                (*position)++;
+                UpdateArrayPosition(robot, *time, *position);
+            }
+        }
+        else
+        {
+            for( ; *time < targetTime; (*time)++)
+            {
+                (*position)--;
+                UpdateArrayPosition(robot, *time, *position);
+            }
+        }
+    }
 }
